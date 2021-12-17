@@ -14,6 +14,8 @@ class Postview(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [SearchFilter]
+    search_fields = ['content','title']
     
 class Categoryview(ModelViewSet):
     queryset = Category.objects.all()
@@ -63,3 +65,5 @@ def likelist(request,post_id,user_id):
 class PostLookCreate(ListCreateAPIView):
     queryset = PostView.objects.all()
     serializer_class = PostviewSerializer
+    
+# postviewe search eklendi 17. dezember
